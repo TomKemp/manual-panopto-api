@@ -1,0 +1,32 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:pan="http://schemas.datacontract.org/2004/07/Panopto.Server.Services.PublicAPI.V40">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:GetSessionsList>
+         <tem:auth>
+            {{#if auth.AuthCode}}
+            <pan:AuthCode>{{auth.AuthCode}}</pan:AuthCode>
+            {{/if}}
+            {{#if auth.Password}}
+            <pan:Password>{{auth.Password}}</pan:Password>
+            {{/if}}
+            {{#if auth.UserKey}}
+            <pan:UserKey>{{auth.UserKey}}</pan:UserKey>
+            {{/if}}
+         </tem:auth>
+         {{#if request}}
+         <tem:request>
+            {{#if request.folderId}}
+            <pan:FolderId>{{request.folderId}}</pan:FolderId>
+            {{/if}}
+            {{#if request.states}}
+            <pan:States>
+               {{#if request.states.sessionState}}
+               <pan:SessionState>{{request.states.sessionState}}</pan:SessionState>
+               {{/if}}
+            </pan:States>
+            {{/if}}
+         </tem:request>
+         {{/if}}
+      </tem:GetSessionsList>
+   </soapenv:Body>
+</soapenv:Envelope>

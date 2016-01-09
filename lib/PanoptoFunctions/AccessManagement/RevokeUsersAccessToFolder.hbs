@@ -1,0 +1,27 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:pan="http://schemas.datacontract.org/2004/07/Panopto.Server.Services.PublicAPI.V40" xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:enu="http://schemas.microsoft.com/2003/10/Serialization/Enums">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:RevokeUsersAccessToFolder>
+         <tem:auth>
+            {{#if auth.AuthCode}}
+            <pan:AuthCode>{{auth.AuthCode}}</pan:AuthCode>
+            {{/if}}
+            {{#if auth.Password}}
+            <pan:Password>{{auth.Password}}</pan:Password>
+            {{/if}}
+            {{#if auth.UserKey}}
+            <pan:UserKey>{{auth.UserKey}}</pan:UserKey>
+            {{/if}}
+         </tem:auth>
+         <tem:folderId>{{folderId}}</tem:folderId>
+         <tem:userIds>
+            {{#each userIds}}
+            <arr:guid>{{this}}</arr:guid>
+            {{/each}}
+         </tem:userIds>
+         <enu:role>
+            {{role}}
+         </enu:role>
+      </tem:RevokeUsersAccessToFolder>
+   </soapenv:Body>
+</soapenv:Envelope>
